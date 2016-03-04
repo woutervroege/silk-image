@@ -31,7 +31,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
         <img
             src$="[[src]]"
             hidden$="[[!imageLoaded]]"
-            style$="width:[[imageElementSize.width]]px;height:[[imageElementSize.height]]px;transform:translate([[imagePosition.left]], [[imagePosition.top]])"
+            style$="width:[[imageElementSize.width]]px;height:[[imageElementSize.height]]px;transform:translate([[imagePosition.left]], [[imagePosition.top]]);-webkit-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-moz-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-o-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-ms-transform:translate([[imagePosition.left]], [[imagePosition.top]])"
             on-load="setLoadedImageSize"
             >
     </template>
