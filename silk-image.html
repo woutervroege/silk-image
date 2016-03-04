@@ -30,7 +30,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
 
         <img
             src$="[[src]]"
-            hidden$="[[!imageLoaded]]"
+            hidden$="[[!placeholderImageLoaded]]"
             style$="width:[[imageElementSize.width]]px;height:[[imageElementSize.height]]px;transform:translate([[imagePosition.left]], [[imagePosition.top]]);-webkit-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-moz-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-o-transform:translate([[imagePosition.left]], [[imagePosition.top]]);-ms-transform:translate([[imagePosition.left]], [[imagePosition.top]])"
             on-load="setLoadedImageSize"
             >
@@ -115,6 +115,11 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                     value: false
                 },
 
+                placeholderImageLoaded: {
+                    type: Boolean,
+                    value: false                    
+                },
+
                 changeOnResize: {
                     type: Boolean,
                     value: false,
@@ -186,6 +191,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                         height: img.height
                     })
                 }.bind(this)
+                this.placeholderImageLoaded = true;
                 img.src = evt.currentTarget.src;
             },
 
@@ -223,6 +229,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                 if(this.imageLoaded && !this.changeOnResize) return;
                 this.src = currentImage.src;
                 this.imageLoaded = true;
+                this.placeholderImageLoaded = true;
             },
 
             setImagePosition: function() {
