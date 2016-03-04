@@ -189,12 +189,25 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                 img.src = evt.currentTarget.src;
             },
 
-            _getCurrentImage: function(imagesSub, newSize, inViewport, scrollPosition) {
+            _getCurrentImage: function(imagesSub, elementSize, inViewport, scrollPosition) {
                 if(this.lazyLoad && !this.inViewport) return;
                 var devicePixelRatio = window.devicePixelRatio || 1;
-                var deviceElementWidth = newSize.width * devicePixelRatio;
+                var deviceElementWidth = elementSize.width * devicePixelRatio;
+                var currentImage = this.images[0].x ? this._getCurrentImageByXDescriptor(elementSize, devicePixelRatio, deviceElementWidth) : this._getCurrentImageByWDescriptor(elementSize, devicePixelRatio, deviceElementWidth);
+                return currentImage;
+            },
+
+            _getCurrentImageByWDescriptor: function(elementSize, devicePixelRatio, deviceElementWidth) {
+                return this._getCurrentImageByDescriptorAndComparator("w", deviceElementWidth, deviceElementWidth)
+            },
+
+            _getCurrentImageByXDescriptor: function(elementSize, devicePixelRatio, deviceElementWidth) {
+                return this._getCurrentImageByDescriptorAndComparator("x", devicePixelRatio, deviceElementWidth)
+            },
+
+            _getCurrentImageByDescriptorAndComparator: function(descriptor, comparator, deviceElementWidth) {
                 var images = this.images.filter(function(image) {
-                    return image.w >= deviceElementWidth;
+                    return image[descriptor] >= comparator;
                 })
                 var sortedImages = images.sort(function(a, b) {
                     var one = (Math.abs(a.w-deviceElementWidth));
@@ -289,7 +302,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                 var chunks = imageElement.replace(/(^\s+|\s+$)/g, "").split(/\s+/g);
                 var imageURL = chunks[0];
                 var imageSizeChunks = chunks[1].split(/(w|px|x)/g);
-                var devicePixelRatio = (imageSizeChunks[1] == "x") ? parseFloat(imageSizeChunks[0]) : 1;
+                var devicePixelRatio = (imageSizeChunks[1] == "x") ? parseFloat(imageSizeChunks[0]) : null;
                 var width = (imageSizeChunks[1] !== "x") ? parseInt(imageSizeChunks[0]) : null;
                 return {
                     src: imageURL,
