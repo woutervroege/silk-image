@@ -1,0 +1,21 @@
+{
+  "name": "silk-image",
+  "homepage": "https://github.com/woutervroege/silk-image",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Wouter Vroege"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.3.1"
+  }
+}
