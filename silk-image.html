@@ -199,6 +199,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
                 if(this.lazyLoad && !this.inViewport) return;
                 var devicePixelRatio = window.devicePixelRatio || 1;
                 var deviceElementWidth = elementSize.width * devicePixelRatio;
+                if(!this.images[0]) return;
                 var currentImage = this.images[0].x ? this._getCurrentImageByXDescriptor(elementSize, devicePixelRatio, deviceElementWidth) : this._getCurrentImageByWDescriptor(elementSize, devicePixelRatio, deviceElementWidth);
                 return currentImage;
             },
@@ -296,7 +297,7 @@ Silk image: [GitHub](https://github.com/woutervroege/silk-image)
             },
 
             _getImages: function(srcset) {
-                if(!srcset) return [];
+                if(!srcset || srcset == "") return [];
                 var imageElements = srcset.split(/,/g);
                 return imageElements
                     .map(this._parseImageElement.bind(this))
