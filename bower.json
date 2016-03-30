@@ -29,5 +29,5 @@
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.5",
     "web-component-tester": "*"
   },
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
