@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
 
 <!--
 Silk image: [GitHub](https://github.com/woutervroege/silk-image)
@@ -47,6 +47,7 @@ Example:
 
         <img
             src$="[[src]]"
+            alt="[[alt]]"
             hidden$="[[!placeholderImageLoaded]]"
             style$="width:[[_imageElementSize.width]]px;height:[[_imageElementSize.height]]px;transform:translate([[_imagePosition.left]], [[_imagePosition.top]]);-webkit-transform:translate([[_imagePosition.left]], [[_imagePosition.top]]);-moz-transform:translate([[_imagePosition.left]], [[_imagePosition.top]]);-o-transform:translate([[_imagePosition.left]], [[_imagePosition.top]]);-ms-transform:translate([[_imagePosition.left]], [[_imagePosition.top]])"
             on-load="_updateLoadedImageSize"
@@ -71,6 +72,13 @@ Example:
                 scrset: {
                     type: String,
                     value: null
+                },
+                /**
+                 * Specifies the alt tag of an image.
+                 */
+                alt: {
+                    type: String,
+                    value: ''
                 },
                 /**
                  * specifies how the image element should be fitted to the box established by its used height and width
